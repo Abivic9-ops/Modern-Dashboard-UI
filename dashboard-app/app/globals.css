@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #F5F6FB;
+  --surface: #FFFFFF;
+  --surface-2: #FBFBFE;
+  --border: #ECEDF3;
+  --text: #1B1B2A;
+  --text-muted: #6B6B85;
+  --text-faint: #A0A0B4;
+  --brand: #6C5CE7;
+  --brand-hover: #5A4BD4;
+  --brand-soft: #EFECFE;
+  --mint: #12C99B;
+  --coral: #FF6B6B;
+  --amber: #FDB44B;
+  --sky: #4DA8FF;
+}
+
+.dark {
+  --bg: #0F1017;
+  --surface: #181A24;
+  --surface-2: #1F2230;
+  --border: #272A38;
+  --text: #ECEDF5;
+  --text-muted: #A2A5B9;
+  --text-faint: #6E7186;
+  --brand: #8B7BFF;
+  --brand-hover: #9C8FFF;
+  --brand-soft: #211F3A;
+  --mint: #2BD6AD;
+  --coral: #FF7E7E;
+  --amber: #FFC260;
+  --sky: #6BB6FF;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-faint: var(--text-faint);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+  --color-mint: var(--mint);
+  --color-coral: var(--coral);
+  --color-amber: var(--amber);
+  --color-sky: var(--sky);
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --shadow-sm: 0 1px 2px rgba(16,17,40,.06);
+  --shadow-md: 0 8px 24px rgba(16,17,40,.08);
+  --shadow-lg: 0 16px 48px rgba(16,17,40,.14);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
