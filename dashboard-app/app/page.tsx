@@ -12,12 +12,13 @@ import { statCards } from "@/lib/data";
 
 export default function Dashboard() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
     <>
-      <Sidebar />
+      <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed((v) => !v)} />
       <MobileDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
-      <div className="lg:pl-64">
+      <div className={"transition-all duration-200 " + (sidebarCollapsed ? "lg:pl-16" : "lg:pl-64")}>
         <Topbar onMenuClick={() => setDrawerOpen(true)} />
         <main className="min-h-screen p-6 lg:p-8">
           <div className="mx-auto max-w-[1400px] space-y-6 lg:space-y-8">

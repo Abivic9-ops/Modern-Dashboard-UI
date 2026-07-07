@@ -22,7 +22,7 @@ Built by Abivic9-Ops. Find the project repository at [github.com/Abivic9-ops/Mod
 
 ## Features
 
-**Fixed Sidebar.** Persistent navigation on the left side with icon and label pairs. The active page shows a violet accent bar and a tinted background. All links are keyboard focusable.
+**Fixed Sidebar.** Persistent navigation on the left side with icon and label pairs. The active page shows a violet accent bar and a tinted background. All links are keyboard focusable. A collapse button at the bottom toggles the sidebar between a full width state with visible labels and a compact icon only state, giving more room for the main content area.
 
 **Responsive Top Bar.** Sticky header containing a hamburger menu (mobile only), page title, search input, notification bell with badge count, dark mode toggle, and a user avatar with dropdown.
 
@@ -42,7 +42,7 @@ Built by Abivic9-Ops. Find the project repository at [github.com/Abivic9-ops/Mod
 
 **Accessibility.** The interface targets WCAG AA contrast ratios across both themes. Every interactive element shows a visible focus ring. The sidebar, dropdown menu, and drawer support full keyboard navigation.
 
-**Responsive Layout.** The dashboard adapts to viewport widths of 1440, 1024, 768, and 375 pixels. The sidebar collapses to a drawer on medium and small screens. Stat cards and charts reflow to fit the available space.
+**Responsive Layout.** The dashboard adapts across four viewport tiers using Tailwind breakpoints. The sidebar collapses into a slide in drawer on smaller screens. Stat cards reflow from one column on phones to four columns on large desktops. Charts stack vertically on tablets and sit side by side on larger screens. The data table scrolls horizontally on narrow screens to keep all columns accessible. Spacing, font sizes, and component widths scale proportionally across every tier.
 
 ---
 
@@ -53,7 +53,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open https://modern-ui-dashboard-design.vercel.app/ in your browser.
 
 ---
 
@@ -108,6 +108,8 @@ public/
 
 The sidebar renders two navigation groups from the nav configuration. The primary group contains Dashboard, Orders, Customers, Products, Analytics, and Messages. The secondary group contains Settings and Help. Each item uses a Lucide icon and a text label. The active item has a 3 pixel wide violet accent bar on its left edge, a violet tinted background, and violet text color. All items display a focus visible ring when navigated with a keyboard.
 
+The sidebar is collapsible on desktop screens. A button at the bottom of the sidebar toggles between expanded and collapsed states. When expanded, the sidebar shows the brand name, navigation labels, and a collapse button with text. When collapsed, the sidebar narrows to 64 pixels showing only the brand icon and navigation icons. Text labels and the collapse button label hide with a smooth opacity transition. The main content area shifts to fill the reclaimed space. The collapsed state persists within the current session.
+
 ### Topbar
 
 The top bar spans the full width of the main content area. On the left side it shows a hamburger button (visible only below the large breakpoint) and the page title. On the right side it groups four controls. A search input with a magnifier icon appears on screens wider than the small breakpoint. A notification bell button shows a coral badge with a count when there are unread items. A theme toggle switches between light and dark mode. An avatar button opens a dropdown menu with a profile card, three action items, and their icons.
@@ -139,6 +141,37 @@ The table presents six orders paginated across two pages with four rows per page
 ### Status Pill
 
 Three status values map to three color schemes. Paid uses a mint green background with mint text. Pending uses an amber background with amber text. Failed uses a coral background with coral text. Each pill has full rounded corners, compact horizontal padding, and a small font size.
+
+---
+
+## Responsive Breakpoints
+
+The dashboard uses Tailwind's default breakpoint system. Each tier adjusts the layout to match the available screen width.
+
+### Extra Small (below 640 pixels)
+
+The single column layout for mobile phones. The sidebar is hidden and replaced by a hamburger button in the top bar. Clicking the button opens a slide in drawer with the full navigation. Stat cards stack in a single column. The greeting section stacks vertically with the date below the title. Charts stack one above the other. The orders table becomes horizontally scrollable inside its container so no column is hidden. The search input is hidden to save space. Icons in the top bar use tighter spacing.
+
+### Small to Medium (640 to 1023 pixels)
+
+The search input appears in the top bar. Stat cards expand to a two column grid. The greeting text and date align side by side in a row. Top bar icons use wider spacing.
+
+### Large (1024 to 1279 pixels)
+
+The sidebar becomes visible on the left side of the screen. The main content area shifts right with a 256 pixel offset to accommodate the sidebar. A collapse button at the bottom of the sidebar lets you switch to a compact icon only state, reducing the offset to 64 pixels and giving more space to the main content. Side padding in the main area increases. The search input widens for easier use. The charts section switches to a three column grid with the revenue chart spanning two columns and the category donut in the remaining column.
+
+### Extra Large (1280 pixels and above)
+
+Stat cards expand to a four column grid for maximum data density. All content is capped at a maximum width of 1400 pixels to prevent excessive stretching on ultra wide monitors.
+
+### Layout Behavior Summary
+
+| Viewport Width | Sidebar | Stat Cards | Charts | Search |
+|---|---|---|---|---|---|
+| Below 640px | Hidden, hamburger replaces it | 1 column | Stacked vertically | Hidden |
+| 640 to 1023px | Hidden, hamburger replaces it | 2 columns | Stacked vertically | Visible |
+| 1024 to 1279px | Full or collapsed, collapsible toggle at bottom | 2 columns | 2 thirds and 1 third grid | Wider input |
+| 1280px and above | Full or collapsed, collapsible toggle at bottom | 4 columns | 2 thirds and 1 third grid | Wider input |
 
 ---
 
