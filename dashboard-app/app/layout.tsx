@@ -10,13 +10,25 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Modern UI Dashboard — SaaS Analytics",
+  title: {
+    default: "Mwendwa Dashboard — SaaS Analytics",
+    template: "%s — Mwendwa Dashboard",
+  },
   description:
     "Production SaaS analytics dashboard built with Next.js, TypeScript, Tailwind CSS, and Recharts. Track sales, orders, revenue, and more.",
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
-    title: "Modern UI Dashboard",
+    title: "Mwendwa Dashboard",
     description: "SaaS analytics dashboard by Victor Mwendwa",
     type: "website",
+    siteName: "Mwendwa Dashboard",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mwendwa Dashboard",
+    description: "SaaS analytics dashboard by Victor Mwendwa",
   },
 };
 
@@ -32,6 +44,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <meta name="theme-color" content="#F5F6FB" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0F1017" media="(prefers-color-scheme: dark)" />
+        <meta name="color-scheme" content="light dark" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
