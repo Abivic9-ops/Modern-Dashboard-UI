@@ -1,32 +1,50 @@
-# Mwendwa Dashboard — SaaS Analytics
+# Mwendwa Dashboard  SaaS Analytics
 
-A production-quality SaaS analytics dashboard built with **Next.js 16 (App Router), TypeScript, Tailwind CSS v4, Recharts, Lucide, and Radix UI**.
+A production quality SaaS analytics dashboard built with Next.js 16 (App Router), TypeScript, Tailwind CSS v4, Recharts, Lucide, and Radix UI.
 
-> Built by [Victor Mwendwa](https://github.com/anomalyco) — Product Owner, Full-Stack Developer & System Architect.
+Built by Abivic9-Ops. Find the project repository at [github.com/Abivic9-ops/Modern-Dashboard-UI](https://github.com/Abivic9-ops/Modern-Dashboard-UI).
+
+---
 
 ## Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 16 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 (class-based dark mode) |
-| Charts | Recharts |
-| Icons | Lucide React |
-| Dropdowns | Radix UI Dropdown Menu |
-| Font | Poppins (via `next/font`) |
+| Layer       | Technology                   |
+|-------------|------------------------------|
+| Framework   | Next.js 16 (App Router)      |
+| Language    | TypeScript                   |
+| Styling     | Tailwind CSS v4 (class based dark mode) |
+| Charts      | Recharts                     |
+| Icons       | Lucide React                 |
+| Dropdowns   | Radix UI Dropdown Menu       |
+| Font        | Poppins (via next/font)      |
+
+---
 
 ## Features
 
-- **Fixed sidebar** with icon+label navigation and active-state accent bar
-- **Responsive top bar** with search, notifications badge, dark mode toggle, and avatar dropdown
-- **4 stat cards** with one featured violet card, delta chips, and icon wells
-- **Revenue bar chart** (monthly, KES '000) and **sales-by-category donut** (4 segments)
-- **Recent orders table** — sortable, paginated, with status pills (Paid/Pending/Failed)
-- **Mobile hamburger drawer** with focus trap, scroll lock, and ESC-to-close
-- **Dark mode** via Tailwind class strategy, persisted to localStorage, no flash
-- **WCAG AA** contrast, visible focus-visible rings, semantic HTML landmarks
-- **Responsive** at 1440 / 1024 / 768 / 375 px
+**Fixed Sidebar.** Persistent navigation on the left side with icon and label pairs. The active page shows a violet accent bar and a tinted background. All links are keyboard focusable.
+
+**Responsive Top Bar.** Sticky header containing a hamburger menu (mobile only), page title, search input, notification bell with badge count, dark mode toggle, and a user avatar with dropdown.
+
+**Avatar Dropdown.** Clicking the avatar opens a menu showing the user profile card (name and email) plus three actions: Profile, Settings, and Sign out. Each action has a corresponding icon. The menu closes on Escape key press or outside click.
+
+**Stat Cards.** Four metric cards arranged in a responsive grid. The first card uses the violet brand color as its background to create visual hierarchy. Each card includes a label, a large formatted value, an icon in a tinted well, and a delta chip indicating the change from the prior month.
+
+**Revenue Chart.** A bar chart displaying monthly revenue in KES thousands across all twelve months. Uses violet bars with rounded tops and a custom tooltip on hover. Colors adapt automatically to the active theme.
+
+**Category Donut.** A donut chart showing sales distribution across four categories: Electronics, Fashion, Home and Living, and Beauty. Displays the total value of KES 1.24M in the center with a color coded legend below.
+
+**Orders Table.** A semantic HTML table listing recent orders. Each row shows the order ID, customer name, date, amount, and a color coded status pill. Columns are sortable by clicking the header. Pagination divides results across pages.
+
+**Dark Mode.** A sun and moon toggle switches between light and dark themes. The preference is saved to localStorage and restored on the next visit. An inline script applies the saved theme before the first paint, so the correct theme appears immediately without visual disruption.
+
+**Mobile Drawer.** On smaller screens, the sidebar becomes a slide in drawer with a dimmed overlay. Focus is trapped inside while open, body scroll is locked, and the drawer closes on Escape key press, overlay click, or navigation selection.
+
+**Accessibility.** The interface targets WCAG AA contrast ratios across both themes. Every interactive element shows a visible focus ring. The sidebar, dropdown menu, and drawer support full keyboard navigation.
+
+**Responsive Layout.** The dashboard adapts to viewport widths of 1440, 1024, 768, and 375 pixels. The sidebar collapses to a drawer on medium and small screens. Stat cards and charts reflow to fit the available space.
+
+---
 
 ## Getting Started
 
@@ -37,35 +55,129 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Build
+---
+
+## Build for Production
 
 ```bash
 npm run build
 ```
 
+The output is a static export or server rendered application depending on your deployment target.
+
+---
+
 ## Project Structure
 
 ```
 app/
-  layout.tsx          Fonts, theme init script, metadata
-  page.tsx            Dashboard page composition
-  globals.css         Token variables, base styles, dark mode
+  layout.tsx          Global layout, fonts, metadata, theme initialization
+  page.tsx            Dashboard page assembly
+  globals.css         CSS custom properties and base styles for both themes
+
 components/
-  layout/             Sidebar, Topbar, MobileDrawer, ThemeToggle
-  dashboard/          StatCard, RevenueChart, CategoryDonut, OrdersTable, StatusPill
+  layout/
+    Sidebar.tsx       Fixed desktop navigation sidebar
+    Topbar.tsx        Sticky header bar with search, notifications, avatar
+    MobileDrawer.tsx  Off canvas slide in drawer for mobile
+    ThemeToggle.tsx   Sun and moon dark mode toggle
+    Avatar.tsx        Image based user avatar component
+
+  dashboard/
+    StatCard.tsx      Individual metric card with value and delta
+    RevenueChart.tsx  Monthly revenue bar chart
+    CategoryDonut.tsx Sales distribution donut chart
+    OrdersTable.tsx   Sortable and paginated orders table
+    StatusPill.tsx    Color coded status badge
+
 lib/
-  cn.ts               clsx + tailwind-merge helper
-  data.ts             Sample data (stats, revenue, categories, orders)
-  nav.ts              Sidebar navigation config
+    cn.ts             Utility combining clsx and tailwind merge
+    data.ts           Sample data for stats, revenue, categories, and orders
+    nav.ts            Sidebar navigation item configuration
+
+public/
+    avatar.png        Custom illustrated profile avatar
+    favicon.svg       Brand favicon
 ```
 
-## Screenshots
+---
 
-> _Light & dark mode screenshots to be added after deployment._
+## Key Components in Detail
 
-## Live Demo
+### Sidebar
 
-> _Vercel deployment link to be added._
+The sidebar renders two navigation groups from the nav configuration. The primary group contains Dashboard, Orders, Customers, Products, Analytics, and Messages. The secondary group contains Settings and Help. Each item uses a Lucide icon and a text label. The active item has a 3 pixel wide violet accent bar on its left edge, a violet tinted background, and violet text color. All items display a focus visible ring when navigated with a keyboard.
+
+### Topbar
+
+The top bar spans the full width of the main content area. On the left side it shows a hamburger button (visible only below the large breakpoint) and the page title. On the right side it groups four controls. A search input with a magnifier icon appears on screens wider than the small breakpoint. A notification bell button shows a coral badge with a count when there are unread items. A theme toggle switches between light and dark mode. An avatar button opens a dropdown menu with a profile card, three action items, and their icons.
+
+### Avatar Dropdown
+
+The dropdown uses Radix UI for accessible behavior. It opens on click of the avatar button. The content includes a profile header showing a smaller version of the avatar alongside the user name and email. Below a divider, three menu items each display an icon and a label: Profile (User icon), Settings (Settings icon), and Sign out (LogOut icon in coral color). The dropdown closes when the user presses Escape, clicks outside, or selects an item. Arrow keys navigate between items.
+
+### Mobile Drawer
+
+Below the large breakpoint, the sidebar is replaced by a drawer component. A hamburger button in the top bar opens it. The drawer slides in from the left edge. Behind it, a semi transparent overlay covers the rest of the page. Clicking the overlay or pressing Escape closes the drawer. While open, focus is trapped inside the drawer and body scrolling is disabled. The drawer also closes automatically when the user clicks a navigation link.
+
+### Stat Cards
+
+Four cards are displayed in a grid that adjusts from one column on small screens to four columns on extra large screens. Each card has a fixed height with consistent padding. The card label appears in muted text at the top left. An icon sits in a tinted circular well at the top right. The metric value uses a larger and bolder font size below the label. A delta chip at the bottom shows the percentage change. An upward trending arrow and green text indicate a positive change. A downward trending arrow and coral text indicate a negative change. The first card is featured with a violet background and white text for visual emphasis.
+
+### Revenue Chart
+
+The chart renders twelve months of data as vertical bars. Each bar has a 6 pixel rounded top corner. The fill color uses the violet brand variable, which changes automatically in dark mode. Horizontal grid lines appear behind the bars with a dashed style. The X axis shows abbreviated month labels. The Y axis shows values with a "k" suffix for thousands. When the user hovers over a bar, a tooltip appears with the exact month name and value.
+
+### Category Donut
+
+The donut chart displays four segments with a 4 pixel gap between them. Each segment uses a distinct color mapped to the design tokens: Electronics in violet, Fashion in mint, Home and Living in amber, and Beauty in coral. The center of the donut shows the combined total of KES 1.24M. Below the chart, a legend lists each category name with a matching color dot and its percentage value.
+
+### Orders Table
+
+The table presents six orders paginated across two pages with four rows per page. The header row is uppercase with muted text. Each column header is clickable for sorting. An arrow icon in the header indicates the current sort direction. The body rows have hairline dividers between them. Each order row shows the order ID in medium weight text, the customer name and date in muted text, the amount in medium weight text, and a status pill. The pagination controls at the bottom show the current page number and buttons for previous and next.
+
+### Status Pill
+
+Three status values map to three color schemes. Paid uses a mint green background with mint text. Pending uses an amber background with amber text. Failed uses a coral background with coral text. Each pill has full rounded corners, compact horizontal padding, and a small font size.
+
+---
+
+## Dark Mode Implementation
+
+The application uses Tailwind's class based dark mode strategy. The dark class on the HTML element triggers all theme variables to switch to their dark values. The theme toggle button reads the current state and writes the new preference to localStorage. A small inline script in the document head reads localStorage before the page renders, preventing any flash of the wrong theme. All components including charts use CSS custom properties for colors, so they adapt correctly without additional logic.
+
+---
+
+## Design Tokens
+
+The palette is defined as CSS custom properties on the root element. Light theme values use a soft lavender grey background with white surfaces and the violet brand color. Dark theme values use a deep neutral background with slightly lighter elevated surfaces and a lightened violet for contrast. Supporting colors include mint for positive indicators, coral for negative indicators or badges, amber for pending states, and sky for informational elements. Border radius values are 12 pixels for inputs and 16 pixels for cards. Shadow tokens follow a three tier system for resting cards, elevated elements, and modals.
+
+---
+
+## Accessibility Notes
+
+Color contrast exceeds WCAG AA minimums in both themes. The violet brand color on the featured card has sufficient contrast against white text, and the lightened dark mode variant maintains readability on dark surfaces. Focus indicators use a 2 pixel violet ring with a 2 pixel offset from the element. The reduced motion media query disables transitions and animations for users who prefer less motion.
+
+---
+
+## Browser Support
+
+The application targets modern browsers that support CSS custom properties, CSS Grid, and the latest JavaScript features. This includes recent versions of Chrome, Firefox, Safari, and Edge.
+
+---
+
+## Deploy on Vercel
+
+The easiest way to deploy this application is through Vercel, the platform built by the creators of Next.js.
+
+```bash
+npm install -g vercel
+vercel
+```
+
+Follow the prompts to link your GitHub repository and deploy. The application is automatically optimized for production with server side rendering and static generation.
+
+---
 
 ## License
 

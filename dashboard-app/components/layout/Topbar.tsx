@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, Search, Bell } from "lucide-react";
+import { Menu, Search, Bell, User, Settings, LogOut } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { Avatar } from "./Avatar";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { cn } from "@/lib/cn";
 
@@ -65,9 +66,9 @@ export function Topbar({ onMenuClick }: TopbarProps) {
             <button
               type="button"
               aria-label="User menu"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+              className="flex h-10 w-10 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
             >
-              AN
+              <Avatar />
             </button>
           </DropdownMenu.Trigger>
 
@@ -75,16 +76,32 @@ export function Topbar({ onMenuClick }: TopbarProps) {
             <DropdownMenu.Content
               align="end"
               sideOffset={8}
-              className="z-50 min-w-[180px] rounded-xl border border-border bg-surface p-1.5 shadow-md"
+              className="z-50 w-56 rounded-xl border border-border bg-surface p-2 shadow-md"
             >
-              <DropdownMenu.Item className="flex cursor-default select-none items-center rounded-lg px-3 py-2 text-sm text-text outline-none data-[highlighted]:bg-surface-2">
+              {/* Profile header */}
+              <div className="mb-2 flex items-center gap-3 rounded-lg px-3 py-2">
+                <Avatar size={36} />
+                <div className="flex flex-col">
+                  <span className="text-sm font-semibold text-text">Amina Njoroge</span>
+                  <span className="text-xs text-muted">amina@mwendwa.co.ke</span>
+                </div>
+              </div>
+
+              <DropdownMenu.Separator className="my-1 h-px bg-border" />
+
+              <DropdownMenu.Item className="flex cursor-pointer select-none items-center gap-3 rounded-lg px-3 py-2 text-sm text-text outline-none data-[highlighted]:bg-surface-2">
+                <User className="h-4 w-4 text-muted" />
                 Profile
               </DropdownMenu.Item>
-              <DropdownMenu.Item className="flex cursor-default select-none items-center rounded-lg px-3 py-2 text-sm text-text outline-none data-[highlighted]:bg-surface-2">
+              <DropdownMenu.Item className="flex cursor-pointer select-none items-center gap-3 rounded-lg px-3 py-2 text-sm text-text outline-none data-[highlighted]:bg-surface-2">
+                <Settings className="h-4 w-4 text-muted" />
                 Settings
               </DropdownMenu.Item>
+
               <DropdownMenu.Separator className="my-1 h-px bg-border" />
-              <DropdownMenu.Item className="flex cursor-default select-none items-center rounded-lg px-3 py-2 text-sm text-coral outline-none data-[highlighted]:bg-surface-2">
+
+              <DropdownMenu.Item className="flex cursor-pointer select-none items-center gap-3 rounded-lg px-3 py-2 text-sm text-coral outline-none data-[highlighted]:bg-surface-2">
+                <LogOut className="h-4 w-4" />
                 Sign out
               </DropdownMenu.Item>
             </DropdownMenu.Content>
