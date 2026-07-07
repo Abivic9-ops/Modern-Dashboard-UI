@@ -10,8 +10,14 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Mwendwa Dashboard",
-  description: "SaaS analytics dashboard",
+  title: "Modern UI Dashboard — SaaS Analytics",
+  description:
+    "Production SaaS analytics dashboard built with Next.js, TypeScript, Tailwind CSS, and Recharts. Track sales, orders, revenue, and more.",
+  openGraph: {
+    title: "Modern UI Dashboard",
+    description: "SaaS analytics dashboard by Victor Mwendwa",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

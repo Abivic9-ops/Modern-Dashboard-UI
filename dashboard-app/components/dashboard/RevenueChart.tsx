@@ -8,12 +8,11 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  type TooltipProps,
 } from "recharts";
 import { revenueData } from "@/lib/data";
-import { useTheme } from "next/navigation";
 
-function CustomTooltip({ active, payload, label }: TooltipProps<number, string>) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
     <div className="rounded-xl border border-border bg-surface px-3 py-2 shadow-md">
@@ -50,7 +49,7 @@ export function RevenueChart() {
               dx={-4}
               tickFormatter={(v) => `${v}k`}
             />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: "var(--brand-soft)" }} />
+            <Tooltip content={CustomTooltip} cursor={{ fill: "var(--brand-soft)" }} />
             <Bar dataKey="revenue" fill="var(--brand)" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>

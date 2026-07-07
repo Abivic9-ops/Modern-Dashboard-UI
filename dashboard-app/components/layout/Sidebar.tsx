@@ -11,10 +11,10 @@ export function Sidebar() {
   return (
     <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-border bg-surface lg:flex">
       <div className="flex h-16 items-center gap-2.5 border-b border-border px-6">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-sm font-bold text-white">
-          M
+        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand text-sm font-bold text-white">
+          UI
         </div>
-        <span className="font-heading text-lg font-bold text-text">Mwendwa</span>
+        <span className="font-heading text-lg font-bold text-text">Modern UI</span>
       </div>
 
       <nav className="flex-1 overflow-y-auto py-4">

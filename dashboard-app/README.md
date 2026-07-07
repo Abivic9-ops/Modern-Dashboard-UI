@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mwendwa Dashboard — SaaS Analytics
+
+A production-quality SaaS analytics dashboard built with **Next.js 16 (App Router), TypeScript, Tailwind CSS v4, Recharts, Lucide, and Radix UI**.
+
+> Built by [Victor Mwendwa](https://github.com/anomalyco) — Product Owner, Full-Stack Developer & System Architect.
+
+## Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 (class-based dark mode) |
+| Charts | Recharts |
+| Icons | Lucide React |
+| Dropdowns | Radix UI Dropdown Menu |
+| Font | Poppins (via `next/font`) |
+
+## Features
+
+- **Fixed sidebar** with icon+label navigation and active-state accent bar
+- **Responsive top bar** with search, notifications badge, dark mode toggle, and avatar dropdown
+- **4 stat cards** with one featured violet card, delta chips, and icon wells
+- **Revenue bar chart** (monthly, KES '000) and **sales-by-category donut** (4 segments)
+- **Recent orders table** — sortable, paginated, with status pills (Paid/Pending/Failed)
+- **Mobile hamburger drawer** with focus trap, scroll lock, and ESC-to-close
+- **Dark mode** via Tailwind class strategy, persisted to localStorage, no flash
+- **WCAG AA** contrast, visible focus-visible rings, semantic HTML landmarks
+- **Responsive** at 1440 / 1024 / 768 / 375 px
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  layout.tsx          Fonts, theme init script, metadata
+  page.tsx            Dashboard page composition
+  globals.css         Token variables, base styles, dark mode
+components/
+  layout/             Sidebar, Topbar, MobileDrawer, ThemeToggle
+  dashboard/          StatCard, RevenueChart, CategoryDonut, OrdersTable, StatusPill
+lib/
+  cn.ts               clsx + tailwind-merge helper
+  data.ts             Sample data (stats, revenue, categories, orders)
+  nav.ts              Sidebar navigation config
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Screenshots
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> _Light & dark mode screenshots to be added after deployment._
 
-## Deploy on Vercel
+## Live Demo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> _Vercel deployment link to be added._
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT

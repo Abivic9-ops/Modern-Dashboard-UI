@@ -1,16 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/cn";
-import { TrendingUp, TrendingDown } from "lucide-react";
+import { TrendingUp, TrendingDown, ShoppingCart, ShoppingBag, UserPlus } from "lucide-react";
 import type { StatCard as StatCardData } from "@/lib/data";
-import { ShoppingCart } from "lucide-react";
 
-const icons = [
-  ShoppingCart,
-  TrendingUp,
-  TrendingUp,
-  TrendingDown,
-];
+const icons = [ShoppingCart, ShoppingBag, UserPlus, TrendingUp];
 
 interface StatCardProps {
   card: StatCardData;
@@ -49,7 +43,7 @@ export function StatCard({ card, index }: StatCardProps) {
         >
           <Icon
             className={cn(
-              "h-4.5 w-4.5",
+              "h-[18px] w-[18px]",
               card.featured ? "text-white" : "text-brand"
             )}
           />
